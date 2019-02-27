@@ -1,0 +1,68 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	background: #333;
+	font: 14px 'Century Gothic', Futura, sans-serif;
+}
+
+#container
+{
+	display: flex;
+	flex-flow: column nowrap;
+	
+	width: 100%;
+	height: 100vh;
+	max-height: 100vh;
+}
+
+#foot
+{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	color: #666;
+	background-color: #222;
+}
+
+#foot > *
+{
+	flex: 0 1 auto;
+	margin: 0 10px;
+}
+
+#foot > a
+{
+	color: inherit;
+	text-decoration: none;
+}
+#foot > a:hover { text-decoration: underline; }
+
+#head
+{
+	width: 100%;
+	margin: 0 auto;
+	padding: 10px 0;
+	margin-bottom: 25px;
+	font-size: 3em;
+	font-weight: bold;
+	text-align: center;
+	background-color: #222;
+}
+
+#introduction
+{
+	flex: 0 1 auto;
+	margin: 0 auto;
+	max-width: 900px;
+	text-align: center;
+	
+	font-size: 24px;
+	color: #999;
+}
