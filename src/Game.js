@@ -69,12 +69,12 @@ export default class Game extends React.Component
 	{
 		const moves = history.map((step, move) => {
 			const desc = move
-				? 'Go to move #' + move
+				? 'Go to move ' + move
 				: 'Go to start'
 			
 			return (
 				<li key={move}>
-					<button onClick={() => this.jumpTo(move)}>{desc}</button>
+					<div class="button" onClick={() => this.jumpTo(move)}>{desc}</div>
 				</li>
 			)
 		})
@@ -91,6 +91,8 @@ export default class Game extends React.Component
 		let status = 'Next player: ' + (this.state.xTurn ? 'X' : 'O')
 		if(winner)
 			status = 'Winner: ' + winner
+		if(current.squares.indexOf(null) < 0)
+			status = 'Draw!'
 		
 		return (
 			<div className="game">
