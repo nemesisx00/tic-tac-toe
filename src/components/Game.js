@@ -32,6 +32,10 @@ export default class Game extends React.Component
 			history: [
 				{ squares: Array(9).fill(null) }
 			],
+			score: {
+				X: 0,
+				O: 0
+			},
 			stepNumber: 0,
 			xTurn: true
 		}
@@ -65,11 +69,39 @@ export default class Game extends React.Component
 		})
 	}
 	
+	newGame()
+	{
+		const history = this.state.history
+		const current = history[this.state.stepNumber]
+		const winner = calculateWinner(current.squares)
+		
+		hideNewGame()
+		
+		let score = Object.assign({}, this.state.score)
+		if(winner)
+			score[winner] += 1
+		
+		this.setState({
+			history: [
+				{ squares: Array(9).fill(null) }
+			],
+			score,
+			stepNumber: 0,
+			xTurn: true
+		})
+	}
+	
 	render()
 	{
 		const history = this.state.history
 		const current = history[this.state.stepNumber]
 		const winner = calculateWinner(current.squares)
+		
+		const xPlus = winner === identX
+		const oPlus = winner === identO
+		
+		if(winner || current.squares.indexOf(null) < 0)
+			showNewGame()
 		
 		return (
 			<div className="game">
@@ -78,12 +110,13 @@ export default class Game extends React.Component
 				</div>
 				<div className="game-info">
 					<div className="score">
-						<div>{identX}: N/A</div>
-						<div>{identO}: N/A</div>
+						<div>{identX}: {this.state.score.X + (xPlus ? 1 : 0)}</div>
+						<div>{identO}: {this.state.score.O + (oPlus ? 1 : 0)}</div>
 					</div>
 					<div className="status">{updateStatus(this.state.xTurn, winner, current.squares)}</div>
 					<ul>{this.renderHistory(history)}</ul>
 				</div>
+				<div id="newGame" className="button first hidden" onClick={() => this.newGame()}>New Game</div>
 			</div>
 		)
 	}
@@ -126,4 +159,18 @@ function updateStatus(xTurn, winner, squares)
 		status = `${status_win} ${winner}`
 	
 	return status
+}
+
+function showNewGame()
+{
+	let el = document.querySelector('#newGame')
+	if(el)
+		el.className = el.className.replace('first', '').replace('hidden', '').trim()
+}
+
+function hideNewGame()
+{
+	let el = document.querySelector('#newGame')
+	if(el)
+		el.className = el.className.replace('hidden', '').trim() + ' hidden'
 }

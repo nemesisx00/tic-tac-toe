@@ -15,13 +15,6 @@ div.button
 	background-color: #333;
 }
 
-.board-row:after
-{
-	clear: both;
-	content: '';
-	display: table;
-}
-
 .game
 {
 	flex: 0 1 auto;
@@ -82,3 +75,15 @@ div.button
 
 .square:focus { outline: none; }
 .kbd-navigation .square:focus { background: #ddd; }
+
+#newGame
+{
+	position: absolute;
+	top: 45%;
+	font-size: 2em;
+	width: 250px;
+	height: 100px;
+	line-height: 100px;
+	
+	transition: opacity 0.5s, visibility 0.5s;
+}

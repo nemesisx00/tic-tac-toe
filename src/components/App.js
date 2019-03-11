@@ -49,7 +49,7 @@ function showOverlay()
 {
 	let el = document.querySelector('#greyOut')
 	if(el)
-		el.className = el.className.replace('first', '').replace('hidden', '').trim()
+		el.className = ''
 }
 
 function hideOverlay()
