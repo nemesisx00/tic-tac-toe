@@ -26,9 +26,10 @@ export default function App()
 					<header>More Information</header>
 					<p>
 						The end Result of the React tutorial was an entirely unstyled, yet functional, game which was able to be played
-						through to either a Draw or Win. While following along, I opted to make the tutorial's code conform to my style
-						and so I omitted semi-colons and used more ES6 style code when possible. I waited to start making intensive
-						changes until I had followed the tutorial to its conclusion.
+						through to either a Draw or Win. It also contained a time machine-like history functionality allowing the user
+						to move the game state back to that of a previous move. While following along, I opted to make the tutorial's
+						code conform to my style and so I omitted semi-colons and used more ES6 style code when possible. I waited to
+						start making intensive changes until I had followed the tutorial to its conclusion.
 					</p>
 					<p>
 						The first addition I made was to style the application so it looked a bit more complete. This involved adding
