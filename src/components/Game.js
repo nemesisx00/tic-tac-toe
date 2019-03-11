@@ -15,6 +15,9 @@ const winStates = [
 const identX = 'X'
 const identO = 'O'
 
+const history_start = 'Go to start'
+const history_move = 'Go to move'
+
 const status_turn = 'Next player'
 const status_draw = 'Draw'
 const status_win = 'Winner:'
@@ -89,8 +92,8 @@ export default class Game extends React.Component
 	{
 		const moves = history.map((step, move) => {
 			const desc = move
-				? 'Go to move ' + move
-				: 'Go to start'
+				? `${history_move} ${move}`
+				: history_start
 			
 			return (
 				<li key={move}>
