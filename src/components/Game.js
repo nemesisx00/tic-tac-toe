@@ -15,6 +15,10 @@ const winStates = [
 const identX = 'X'
 const identO = 'O'
 
+const status_turn = 'Next player'
+const status_draw = 'Draw'
+const status_win = 'Winner:'
+
 export default class Game extends React.Component
 {
 	constructor(props)
@@ -25,10 +29,6 @@ export default class Game extends React.Component
 			history: [
 				{ squares: Array(9).fill(null) }
 			],
-			score: {
-				x: 0,
-				o: 0
-			},
 			stepNumber: 0,
 			xTurn: true
 		}
@@ -41,34 +41,13 @@ export default class Game extends React.Component
 		const squares = current.squares.slice()
 		const winner = calculateWinner(squares)
 		
-		if(squares[i] || (squares && winner))
-		{
-			let scoreX = current.score.x + (winner === identX ? 1 : 0)
-			let scoreO = current.score.o + (winner === identO ? 1 : 0)
-			
-			this.setState({
-				history: history.concat([{
-					squares: squares
-				}]),
-				score: {
-					x: scoreX,
-					o: scoreO
-				},
-				stepNumber: history.length,
-				xTurn: !this.state.xTurn
-			})
-		}
-		else
+		if(!(squares[i] || (squares && winner)))
 		{
 			squares[i] = this.state.xTurn ? identX : identO
 			this.setState({
 				history: history.concat([{
 					squares: squares
 				}]),
-				score: {
-					x: current.score.x,
-					o: current.score.o
-				},
 				stepNumber: history.length,
 				xTurn: !this.state.xTurn
 			})
@@ -77,9 +56,7 @@ export default class Game extends React.Component
 	
 	jumpTo(step)
 	{
-		const score = this.state.score.splice()
 		this.setState({
-			score,
 			stepNumber: step,
 			xIsNext: (step % 2) === 0
 		})
@@ -91,20 +68,17 @@ export default class Game extends React.Component
 		const current = history[this.state.stepNumber]
 		const winner = calculateWinner(current.squares)
 		
-		let status = 'Next player: ' + (this.state.xTurn ? identX : identO)
-		if(winner)
-			status = 'Winner: ' + winner
-		if(current.squares.indexOf(null) < 0)
-			status = 'Draw!'
-		
 		return (
 			<div className="game">
 				<div className="game-board">
 					<Board squares={current.squares} onClick={i => this.handleClick(i)} />
 				</div>
 				<div className="game-info">
-					<div className="score">{identX}: {this.state.score.x} | {identO}: {this.state.score.o}</div>
-					<div className="status">{status}</div>
+					<div className="score">
+						<div>{identX}: N/A</div>
+						<div>{identO}: N/A</div>
+					</div>
+					<div className="status">{updateStatus(this.state.xTurn, winner, current.squares)}</div>
 					<ul>{this.renderHistory(history)}</ul>
 				</div>
 			</div>
@@ -138,4 +112,15 @@ function calculateWinner(squares)
 	}
 	
 	return null
+}
+
+function updateStatus(xTurn, winner, squares)
+{
+	let status = `${status_turn} ${(xTurn ? identX : identO)}`
+	if(squares.indexOf(null) < 0)
+		status = status_draw
+	if(winner)
+		status = `${status_win} ${winner}`
+	
+	return status
 }
