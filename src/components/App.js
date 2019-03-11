@@ -32,12 +32,17 @@ export default function App()
 					</p>
 					<p>
 						The first addition I made was to style the application so it looked a bit more complete. This involved adding
-						the header and footer bars as well as centering the main content on the screen. The primary reactive portion of
-						the page is the game board itself which grows to fill the screen when there is available space. Also, this
-						information panel utilizes CSS transitions to fade in and out.
+						the header and footer bars as well as centering the main content on the screen. The primary responive portion of
+						the page is the game board itself which grows to fill the majority of the screen when there is available space.
+						Also, this information panel utilizes CSS transitions to fade in and out.
 					</p>
 					<p>
-						The next step was to add a true score board to keep track of each player's wins.
+						The next step was to add scoreboard functionality to keep track of each player's wins. In order to maintain the
+						time machine-like behavior of the history functionality, the scoreboard updates its display based upon whether
+						or not a win has been detected. The score is not updated in the game state until the user moves beyond an arbitrary
+						point of no return. This prompted the creation of a 'New Game' button allowing the user to chose when to move
+						beyond this point of no return. Once clicked the score is updated in the game state, the move history is cleared,
+						and the current turn is reset to its default.
 					</p>
 				</div>
 			</div>

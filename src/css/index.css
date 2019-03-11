@@ -107,9 +107,9 @@ body
 	flex-flow: column nowrap;
 	
 	position: relative;
-	left: 25%;
+	left: calc(49% - 450px);
 	top: 10%;
-	width: 50%;
+	max-width: 900px;
 	padding: 16px;
 	text-align: center;
 	background-color: rgba(45, 45, 45, 0.9);

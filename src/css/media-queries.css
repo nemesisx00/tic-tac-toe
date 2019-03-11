@@ -5,6 +5,12 @@
 		max-width: 600px;
 	}
 	
+	#greyOut #infoOverlay
+	{
+		left: calc(49% - 300px);
+		max-width: 600px;
+	}
+	
 	.square
 	{
 		width: 100px;
@@ -20,6 +26,12 @@
 	{
 		max-width: 400px;
 		font-size: 18px;
+	}
+	
+	#greyOut #infoOverlay
+	{
+		left: calc(49% - 200px);
+		max-width: 400px;
 	}
 	
 	.square
