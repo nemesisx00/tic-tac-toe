@@ -66,7 +66,7 @@ export default class Game extends React.Component
 	{
 		this.setState({
 			stepNumber: step,
-			xIsNext: (step % 2) === 0
+			xTurn: (step % 2) === 0
 		})
 	}
 	
