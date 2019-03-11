@@ -32,6 +32,7 @@ export default class Game extends React.Component
 			history: [
 				{ squares: Array(9).fill(null) }
 			],
+			gameCount: 0,
 			score: {
 				X: 0,
 				O: 0
@@ -69,7 +70,7 @@ export default class Game extends React.Component
 		})
 	}
 	
-	newGame()
+	startNewGame()
 	{
 		const history = this.state.history
 		const current = history[this.state.stepNumber]
@@ -85,6 +86,7 @@ export default class Game extends React.Component
 			history: [
 				{ squares: Array(9).fill(null) }
 			],
+			gameCount: this.state.gameCount + 1,
 			score,
 			stepNumber: 0,
 			xTurn: true
@@ -97,11 +99,10 @@ export default class Game extends React.Component
 		const current = history[this.state.stepNumber]
 		const winner = calculateWinner(current.squares)
 		
-		const xPlus = winner === identX
-		const oPlus = winner === identO
-		
 		if(winner || current.squares.indexOf(null) < 0)
 			showNewGame()
+		else
+			hideNewGame()
 		
 		return (
 			<div className="game">
@@ -110,13 +111,13 @@ export default class Game extends React.Component
 				</div>
 				<div className="game-info">
 					<div className="score">
-						<div>{identX}: {this.state.score.X + (xPlus ? 1 : 0)}</div>
-						<div>{identO}: {this.state.score.O + (oPlus ? 1 : 0)}</div>
+						<div>{identX}: {this.state.score.X + (winner === identX ? 1 : 0)}</div>
+						<div>{identO}: {this.state.score.O + (winner === identO ? 1 : 0)}</div>
 					</div>
 					<div className="status">{updateStatus(this.state.xTurn, winner, current.squares)}</div>
 					<ul>{this.renderHistory(history)}</ul>
 				</div>
-				<div id="newGame" className="button first hidden" onClick={() => this.newGame()}>New Game</div>
+				<div id="newGame" className="button first hidden" onClick={() => this.startNewGame()}>New Game</div>
 			</div>
 		)
 	}
