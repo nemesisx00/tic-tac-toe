@@ -9,7 +9,7 @@ export default function App()
 			<div id="introduction">
 				<p>
 					This is a simple but playable implementation of the game Tic Tac Toe. This project was primarily a learning exercise
-					based on a React tutorial. I've taken some time to go a bit further and explore more of React.
+					based on a React tutorial.
 				</p>
 				<div className="button" onClick={() => showOverlay()}>More Info</div>
 			</div>
