@@ -33,7 +33,7 @@ export default function App()
 					</p>
 					<p>
 						The first addition I made was to style the application so it looked a bit more complete. This involved adding
-						the header and footer bars as well as centering the main content on the screen. The primary responive portion of
+						the header and footer bars as well as centering the main content on the screen. The primary responsive portion of
 						the page is the game board itself which grows to fill the majority of the screen when there is available space.
 						Also, this information panel utilizes CSS transitions to fade in and out.
 					</p>
